@@ -112,4 +112,4 @@ document.querySelector('.themeTextbg').addEventListener('click' , () => {
 function backgroundChanger(value){
     document.body.style.backgroundColor = value;
 }
-backgroundChanger();
+console.log('hi');
