@@ -58,12 +58,12 @@ function themeChanger(color , emojiName){
     emoji.style.opacity = '1';
 
     setTimeout(() => {
-        emoji.style.top ='20%'
+        emoji.style.top ='16%'
     setTimeout(() => {
         emoji.style.zIndex = '10'
     }, 200);
     setTimeout(() => {
-        emoji.style.top ='43%'
+        emoji.style.top ='40%'
     setTimeout(() => {
         emojiName.style.width = '150px'
         emoji.style.opacity = '0';

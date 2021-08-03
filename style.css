@@ -1,7 +1,7 @@
 *{
     margin: 0;
     padding: 0;
-    transition: .25s;
+    transition: .2s;
 }
 @font-face {
     font-family: digital;
@@ -32,7 +32,7 @@ body{
 .emoji{
     position: absolute;
     left: 50%;
-    top: 42%;
+    top: 40%;
     transform-origin: center;
     transform: translate(-50% , -50%);
 }
@@ -59,7 +59,7 @@ body{
     color: rgba(53, 53, 53, 0.829);
     font-size: 60px;
     font-weight: 600;
-    margin:8px;
+    padding:10px;
     font-family: digital;
 }
 .text{
@@ -80,8 +80,8 @@ body{
     position: absolute;
     width: 30px;
     height: 30px;
-    top: 63%;
     right: 10%;
+    top: 63%;
     transform: translate(-50% , -50%);
 }
 .btn1 , .btn2{
@@ -103,6 +103,7 @@ body{
     width: 200px;
     height: 150px;
     flex-direction: column;
+    user-select: none;
 }
 .closeTheme{
     position: absolute;
