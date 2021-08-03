@@ -1,0 +1,149 @@
+*{
+    margin: 0;
+    padding: 0;
+    transition: .25s;
+}
+@font-face {
+    font-family: digital;
+    src: url(./digital-7.italic.ttf);
+}
+body{
+    /* background: rgb(85, 85, 85); */
+    background: rgb(32, 32, 32);
+    color: rgb(0, 0, 0);
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    flex-direction: column;
+}
+.box{
+    width: 200px;
+    height: 250px;
+    background: rgb(43, 167, 211);
+    padding-top: 5px;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.459);
+    z-index: 5;
+}
+.emoji{
+    position: absolute;
+    left: 50%;
+    top: 42%;
+    transform-origin: center;
+    transform: translate(-50% , -50%);
+}
+.MnEmoji{
+    height: 95px;
+    width: 95px;
+    text-shadow: 0 0 20px black;
+    display: none;
+}
+.screen{
+    width: 85%;
+    height: 100px;
+    background: rgba(73, 73, 73, 0.514);
+    border-radius: 5px;
+    margin: 15px auto;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    position: relative;
+    user-select: none;
+    overflow: hidden;
+}
+.num , .text{
+    color: rgba(53, 53, 53, 0.829);
+    font-size: 60px;
+    font-weight: 600;
+    margin:8px;
+    font-family: digital;
+}
+.text{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50% , -50%);
+}
+.btn1 {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    top: 78%;
+    left: 39%;
+    transform: translate(-50% , -50%);
+}
+.btn2{
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 63%;
+    right: 10%;
+    transform: translate(-50% , -50%);
+}
+.btn1 , .btn2{
+    cursor: pointer;
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.239);
+    transition: .2s;
+    background-color: rgba(209, 209, 209, 0.466);
+}
+.btn1:active , .btn2:active{
+    background-color: rgba(209, 209, 209, 0.335);
+}
+.themeParent{
+    margin: 20px 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color: white;
+    width: 200px;
+    height: 150px;
+    flex-direction: column;
+}
+.closeTheme{
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.383);
+    cursor: pointer;
+}
+.themeBtnParent{
+    background: rgba(95, 158, 160, 0.329);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    /* width: 200px;
+    height: 140px; */
+    border-radius: 8px;
+    padding-top: 10px;
+    position: relative;
+}
+.themeButtons{
+    display: flex;
+    cursor: pointer;
+}
+.themeBtn{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin: 5px;
+}
+.thememn , .bg{
+    text-align: center;
+    margin: 20px 10px;
+    font-weight: 600;
+}
+.bl{
+    background: rgb(43, 167, 211);
+}
+.gr{
+    background: rgb(101, 162, 33);
+}
+.yl{
+   background: rgba(255, 206, 90, 0.842);
+}

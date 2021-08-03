@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <title>JavaScript Practice</title>
+</head>
+<body>
+    <div class="container">
+        <div class="emoji">
+            <!-- 😁 -->
+            <img class="MnEmoji yellow" src="./emoji.png">
+            <img class="MnEmoji green" src="./leaf.png">
+            <img class="MnEmoji blue" style="width: 117px;height: 95px; margin-left: -20px;" src="./cold.png">
+        </div>
+
+        <div class="box">
+            <div class="screen">
+                <span class="text"></span>
+                <span class="num" style="opacity: 0;"></span>
+            </div>
+            <div class="buttons">
+                <div class="btn1"></div>
+                <div class="btn2"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="themeParent">
+        <div class="themeText" style="font-weight: bold; padding-top: 10px; cursor: pointer;">Change Theme</div>
+        <div class="themeTextbg" style="font-weight: bold; padding-top: 10px; cursor: pointer;">Change Background</div>
+    <div class="themeBtnParent">
+
+        <div class="thememn" style="display: none;">
+            <div class="closeTheme">X</div>
+            <div class="themeText">
+                <p style="cursor: pointer;">Available Themes</p>
+            </div>
+            <div class="themeButtons">
+                <div onclick="themeChanger(blue , blueEmoji);" class="themeBtn bl"></div>
+                <div onclick="themeChanger(green , greenEmoji);" class="themeBtn gr"></div>
+                <div onclick="themeChanger(yellow , yellowEmoji);" class="themeBtn yl"></div>
+            </div>
+        </div>
+
+        <div class="bg"  style="display: none;">
+            <div class="themeTextbg">
+                <p style="cursor: pointer;">Available Backgrounds</p>
+                <div class="closeTheme">X</div>
+            </div>
+            <div class="themeButtons">
+                <div onclick="backgroundChanger('rgb(155, 11, 11)');" class="themeBtn" style="background: rgb(155, 11, 11);"></div>
+                <div onclick="backgroundChanger('rgb(32, 32, 32)');" class="themeBtn" style="background: rgb(32, 32, 32);"></div>
+                <div onclick="backgroundChanger('rgb(18, 115, 172)');" class="themeBtn" style="background: rgb(18, 115, 172);"></div>
+            </div>
+        </div>
+
+    </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
