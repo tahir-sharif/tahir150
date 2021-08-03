@@ -58,19 +58,19 @@ function themeChanger(color , emojiName){
     emoji.style.opacity = '1';
 
     setTimeout(() => {
-        emoji.style.top ='16%'
+        emoji.style.top ='-130px'
     setTimeout(() => {
         emoji.style.zIndex = '10'
     }, 200);
     setTimeout(() => {
-        emoji.style.top ='40%'
+        emoji.style.top ='95px'
     setTimeout(() => {
         emojiName.style.width = '150px'
         emoji.style.opacity = '0';
         box.style.background = color;
     setTimeout(() => {
-        emojiName.style.width = '95px'
         emoji.style.zIndex = '0'
+        emojiName.style.width = '95px'
     }, 50);
     }, 500);
     }, 500);
@@ -112,4 +112,6 @@ document.querySelector('.themeTextbg').addEventListener('click' , () => {
 function backgroundChanger(value){
     document.body.style.backgroundColor = value;
 }
-console.log('hi');
+
+
+// alert('New Changes have applied :)');

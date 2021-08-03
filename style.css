@@ -31,10 +31,10 @@ body{
 }
 .emoji{
     position: absolute;
-    left: 50%;
-    top: 40%;
-    transform-origin: center;
-    transform: translate(-50% , -50%);
+    left: 33%;
+    top: -120px;
+    top: 95px;
+    transform-origin: top;
 }
 .MnEmoji{
     height: 95px;
@@ -48,9 +48,6 @@ body{
     background: rgba(73, 73, 73, 0.514);
     border-radius: 5px;
     margin: 15px auto;
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-end;
     position: relative;
     user-select: none;
     overflow: hidden;
@@ -62,11 +59,15 @@ body{
     padding:10px;
     font-family: digital;
 }
+.num{
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+}
 .text{
     position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50% , -50%);
+    left: 15px;
+    top: 15px;
 }
 .btn1 {
     position: absolute;
@@ -127,12 +128,15 @@ body{
 .themeButtons{
     display: flex;
     cursor: pointer;
+    -webkit-tap-highlight-color : none;
+    user-select: none;
 }
 .themeBtn{
     width: 50px;
     height: 50px;
     border-radius: 50%;
     margin: 5px;
+    position: relative;
 }
 .thememn , .bg{
     text-align: center;
