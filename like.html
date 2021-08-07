@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="shortcut icon" href="icon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <title>Like & Dislike</title>
+<style>
+    body{
+    background-color: rgb(180, 180, 180);
+    color: rgb(75, 75, 75);
+    font-family: sans-serif;
+    transition: .5s;
+    transition: .5s;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.likeContainer{
+    position: absolute;
+}
+.likeCont{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width:200px;
+    border-bottom: 3px solid rgb(46, 46, 46);
+    color: rgb(112, 112, 112);
+    font-family: sans-serif;
+}
+.likeCont *{
+    font-size: 23px;
+    user-select: none;
+    -webkit-tap-highlight-color : none;
+}
+.like ,.dislike{
+    cursor: pointer;
+    z-index: 1;
+    transition: 0s;
+    user-select: none;
+    -webkit-user-select: none;
+}
+.fa-thumbs-down{
+    transform: rotateY(180deg);
+}
+.likeCount span , .dislikeCount span{
+    font-size: 80%;
+}
+.colored {
+    color: rgb(0, 114, 160);
+}
+.width{
+    position: absolute;
+    bottom: 0px;
+    height: 3px;
+    width: 100%;
+    background: black;
+    transition: .5s;
+}
+.useLess{
+    position: absolute;
+    bottom: -20px;
+    height: 40px;
+    background: transparent;
+    z-index: 0;
+    width: 100%;
+}
+.coloredWidth{
+    background-color: rgb(0, 114, 160);
+}
+.NotColoredWidth {
+    background-color: rgb(100, 99, 99);
+}
+abbr{
+    text-decoration: none;
+}
+.abbrr{
+    top: -100%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50% , 0);
+    color: rgb(207, 207, 207);
+    background-color: rgba(0, 0, 0, 0.582);
+    border-radius: 3px;
+    padding: 6px 7px;
+    transition: .3s;
+    font-weight: 600;
+    user-select: none;
+    opacity: 0;
+}
+.UserForm{
+    position: absolute;
+    top: 100%;
+    padding: 5px;
+    margin-top: 15px;
+    overflow: hidden;
+    width: 220px;
+    text-align: center;
+}
+.hide{
+    display: none;
+}
+.form input{
+    border: none;
+    outline: none;
+    padding: 5px 6px;
+    margin: 6px;
+    font-weight: 600;
+    background: transparent;
+    border-radius: 3px;
+    box-shadow: 0px 0px 5px black;
+}
+.form {
+    box-shadow: 0px 0px 5px black;
+    padding: 15px 3px;
+    border-radius: 5px;
+    margin-top: 25px;
+}
+.form input::placeholder{
+    color: rgba(0, 0, 0, 0.507);
+    font-weight: 600;
+}
+.form button{
+    background: transparent;
+    box-shadow: 0px 0px 5px black;
+    color: rgba(0, 0, 0, 0.507);
+    font-weight: 600;;
+    margin: 0px 5px;
+    margin-top: 10px;
+    cursor: pointer;
+    padding: 5px 7px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+}
+    </style>
+</head>
+<body>
+    <div class="likeContainer" style="text-align: center;">
+        <h2>Like & Dislike</h2>
+        <div style="position: relative;" class="relative">
+            <div class="abbrr">9600 / 2500</div>
+            <div class="width"></div>
+            <div class="useLess"></div>
+            <div class="likeCont">
+                
+            <div class="like" onclick="doLike()">
+            <abbr title="1000" class="abbr">
+                <i class="fas fa-thumbs-up"></i> 
+            <span class="likeCount">0</span>
+            </abbr>
+            </div>
+
+            <div class="dislike" onclick="doDislike()">
+                <abbr title="1000" class="abbr">
+                <span class="dislikeCount">0</span>
+                <i class="fas fa-thumbs-down"></i>
+            </abbr>
+            </div>
+        </div>
+        <div class="UserForm">
+            <div class="msg" style="text-decoration: underline; cursor: pointer;"><p>Enter a Custom likes</p></div>
+            <div class="form hide">
+                <input type="number" placeholder="Enter Likes " id="userLike">
+                <input type="number" placeholder="Enter Dislikes" id="userdislike">
+                <button id="close">Close</button>
+                <button id="done">Okay !</button>
+            </div>
+        </div>
+        </div>
+    </div>
+    <script>
+        var likeContainer = document.querySelector('.likeCont');
+var like = document.querySelector('.like');
+var dislike = document.querySelector('.dislike');
+var width = document.querySelector('.width');
+width.classList.add('NotColoredWidth');
+// width.style.backgroundColor = 'grey';
+
+var likeCount = document.querySelector('.likeCount');
+var dislikeCount = document.querySelector('.dislikeCount');
+var abbr = document.querySelector('.abbrr');
+
+likes = 0;
+dislikes = 0;
+abbr.innerHTML = likes + ' / ' + dislikes;
+
+likeCount.innerHTML =valueConvertor(likes);
+dislikeCount.innerHTML =valueConvertor(dislikes);
+widthChanger()
+
+
+document.querySelectorAll('.abbr')[0].title = 'I like this'
+document.querySelectorAll('.abbr')[1].title = 'I Dislike this'
+
+function doLike(){
+
+    like.classList.add('colored');
+    dislike.classList.remove('colored');
+    document.querySelector('.likeCont').classList.add('border');
+       
+    likes = likes + 1;
+    likeCount.innerHTML =valueConvertor(likes);
+    abbr.innerHTML = likes + ' / ' + dislikes;
+
+
+    width.classList.replace('NotColoredWidth' , 'coloredWidth');
+    widthChanger()
+
+}
+
+function doDislike(){
+    
+    dislike.classList.add('colored');
+    like.classList.remove('colored');
+    document.querySelector('.likeCont').classList.add('border');
+
+    
+    
+    dislikes = dislikes + 1;
+    dislikeCount.innerHTML =valueConvertor(dislikes);
+    abbr.innerHTML = likes + ' / ' + dislikes;
+    
+    width.classList.replace('NotColoredWidth' , 'coloredWidth');
+    widthChanger()
+}
+
+function widthChanger(){
+    calculateWidth = likes + dislikes;
+    calculateWidth = likes / calculateWidth;
+    calculateWidth *= 100;
+    width.style.width = calculateWidth + '%'
+}
+// For Abbrevation of views
+var useLess = document.querySelector('.useLess');
+useLess.addEventListener('mouseover' , function() {
+    setTimeout(() => {
+        abbr.style.opacity = '1'  
+    }, 500);
+})
+useLess.addEventListener('mouseleave' , function() {
+    setTimeout(() => {
+        abbr.style.opacity = '0'   
+    }, 500);
+})
+// Value Convertor
+function valueConvertor(value){
+    converted = value.toString();
+
+    if(value >= 1000000000000){
+        converted = converted.slice(0,1) + 'T'
+        alert('Maximum Limit have reached')
+        return converted;
+    }
+    // for B with more values
+    if(value >= 100000000000){
+        converted = converted.slice(0,3) + 'B'
+        return converted;
+    }
+    else if(value >= 10000000000){
+        if(converted.slice(2 , 3) == '0'){
+        converted = converted.slice(0 , 2) + 'B'
+        return converted;
+        }
+        converted = converted.slice(0 , 2) + '.' + converted.slice(2 , 3) + 'B'
+        return converted;
+    }
+    // for B with more values
+    if(value >= 1100000000){
+        if(converted.slice(1,2) == '0'){
+        converted = converted.slice(0,1) + 'B'
+        return converted;
+        }
+        converted = converted.slice(0,1) + '.' + converted.slice(1,2) + 'B'
+        return converted;
+    }
+    // for B
+    else if(value >= 1000000000){
+        converted = converted.slice(0,1) + 'B'
+        return converted
+    }
+
+    // for M with more values
+    else if(value >= 100000000){
+        converted = converted.slice(0 , 3) + 'M'
+        return converted;
+    }
+
+    // for M with more values
+    else if(value >= 10000000){
+        if(converted.slice(2 , 3) == '0'){
+        converted = converted.slice(0 , 2) + 'M'
+        return converted;
+        }
+        converted = converted.slice(0 , 2) + '.' + converted.slice(2 , 3) + 'M'
+        return converted;
+    }
+    
+    // for M
+    else if(value >= 1100000){
+        if(converted.slice(1,2) == '0'){
+        converted = converted.slice(0 , 1) + 'M'
+        return converted;
+        }
+        converted = converted.slice(0 , 1) + '.' + converted.slice(1,2) + 'M'
+        return converted;
+
+    }
+    else if(value >= 1000000){
+        converted = converted.slice(0 , 1) + 'M'
+        return converted;
+
+    }
+    // for k with more values
+    else if(value >= 100000){
+            converted = converted.slice(0 , 3) + 'k'
+            return converted;
+
+    }
+    // for k with more values
+    else if(value >= 10000){
+        if(converted.slice(2 , 3) == '0'){
+            converted = converted.slice(0 , 2) + 'k'
+            return converted;
+        }
+        converted = converted.slice(0 , 2) + '.' + converted.slice(2 , 3) + 'k'
+        return converted;
+
+    }
+    // for k with point
+    else if(value >= 1100){
+        if(converted.slice(1 , 2) == '0'){
+            converted = converted.slice(0 , 1) + 'k'
+            return converted;
+        }
+        converted = converted.slice(0 , 1) + '.' + converted.slice(1 , 2) + 'k'
+        return converted;
+
+    }
+    // for K
+    else if(value >= 1000){
+        converted = converted.slice(0 , 1) + 'k'
+        return converted;
+
+    }
+    else{
+        return value;
+    }
+}
+
+// User Form
+var form = document.querySelector('.form');
+var msg = document.querySelector('.msg');
+var cancel = document.getElementById('close')
+var userLike = document.getElementById('userLike');
+var userdislike = document.getElementById('userdislike');
+
+msg.addEventListener('click' , function(){
+    msg.classList.toggle('hide');
+    form.classList.toggle('hide');
+})
+cancel.addEventListener('click' , function(){
+    msg.classList.toggle('hide');
+    form.classList.toggle('hide');
+})
+
+document.getElementById('done').addEventListener('click' , function(){User()})
+function User(){
+    var userLike = +(document.getElementById('userLike').value);
+    var userdislike = +(document.getElementById('userdislike').value);
+
+    userLike = Math.floor(userLike);
+    userdislike = Math.floor(userdislike);
+
+    if(userdislike == '0'&& userdislike > -1){
+        dislikes =  - 1;
+        doDislike()
+    }
+    else if(userdislike != '' && userdislike != NaN && userdislike > 0){
+        dislikes = userdislike - 1;
+        doDislike()
+    }
+    if(userLike == '0'&& userLike > -1){
+        likes =  - 1;
+        doLike()
+    }
+    else if(userLike != '' && userdislike != NaN  && userLike > 0){
+         likes = userLike - 1;
+         doLike()
+    }
+    widthChanger();
+
+
+}
+    </script>
+</body>
+</html>
