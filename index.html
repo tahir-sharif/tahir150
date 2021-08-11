@@ -26,6 +26,9 @@
                     <span>Explore</span>
                 </li>
                 <li>
+                    <i class="fas fa-plus-circle plus"></i>
+                </li>
+                <li>
                     <a href="#"><i class="fab fa-youtube"></i></i></a>
                     <span>Subscriptions</span>
                 </li>
@@ -194,9 +197,11 @@
     <div class="header" style="position: relative;">
 
         <div class="hd1">
+            <div class="others">
             <div class="logo">
                 <a href="#"><img src="./logo.png">
                     <span>YouTube </span>
+                    <span>PK</span>
                 </a>
             </div>
             <div class="srchbox">
@@ -207,26 +212,33 @@
                     <button class="srchIco">
                         <i class="far fa-search"></i>
                     </button>
+                    <div class="mic">
+                        <i class="fas fa-microphone-alt"></i>
+                    </div>
                 </div>
             </div>
-
-            <div class="icons mic" style="display: inline-block;">
-                <ul>
-                    <li><a><i class="fas fa-microphone-alt"></i></a></li>
-                </ul>
-            </div>
-            <div class="icons left" style="display: inline-block;">
+            <div class="icons right" style="display: inline-block;">
                 <ul>
                     <li><a><i class="fas fa-upload"></i></a></li>
-                    <li><a><i class="fas fa-bars"></i></a></li>
-                    <li><a><i class="fas fa-bell"></i></a></li>
+                    <li class="mblSrchIco"><a onclick="mblSrch()"><i class="far fa-search"></i></a></li>
+                    <li class="bars"><a><i class="fas fa-bars"></i></a></li>
+                    <li><a><i class="fas fa-bell"><span>9+</span></i></a></li>
                     <li><a><i class="pro fas fa-user-circle"></i></a></li>
                 </ul>
             </div>
         </div>
+        <div class="mblSrchDiv" style="display: none;">
+            <div class="srchtxtMbl">
+                <input type="search" placeholder="Search" class="userSearchMbl" spellcheck="false">
+                <button class="mblSrchBtn"></button>
+                <i class="fas fa-arrow-left backArrow" onclick="mblSrch()"></i>
+                <i class="fas fa-microphone-alt"></i>
+            </div>
+        </div>
+        </div>
         <div class="hd2">
-            <button class="btn btn1"><i class="fas fa-arrow-up"></i></button>
-            <button class="btn btn1"><i class="fas fa-arrow-up"></i></button>
+            <button class="btn btn1" onclick="suggestionScroll(0)"><i class="fas fa-arrow-up"></i></button>
+            <div class="suggestionList">
             <ul>
                 <li>Comedies</li>
                 <li>Mixes</li>
@@ -244,8 +256,8 @@
                 <li>JavaScript</li>
                 <li>Raza Saqib Mustufai</li>    
             </ul>
-            <button class="btn btn2"><i class="fas fa-arrow-up"></i></button>
-            <button class="btn btn2"><i class="fas fa-arrow-up"></i></button>
+        </div>
+            <button class="btn btn2" onclick="suggestionScroll(suggestionList.scrollWidth)"><i class="fas fa-arrow-up"></i></button>
         </div>
 </div>
 </div>

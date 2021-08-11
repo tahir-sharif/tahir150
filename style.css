@@ -47,6 +47,13 @@ body {
     font-size: 22px;
     padding: 5px;
 }
+.bodySidebar .main ul li i.plus {
+    font-weight: 100;
+    font-size: 40px;
+}
+.bodySidebar .main ul li:nth-child(3){
+    display: none;
+}
 .overlay{
     position: absolute;
     top: 0;
@@ -234,18 +241,23 @@ h2{
     width: 100%;
     z-index: 4;
 }
-.header{
+.header {
     width: calc(100% - 80px);
     height: 120px;
-    background: #252525;
+    background: #252525fb;
     margin-left: 80px;
+}
+.toggleOthers{
+    display: none;
 }
 .hd1{
     position: relative;
     border-bottom: solid 1px #424242;
     width: 100%;
     height: 50%;
-    /* overflow:hidden; */
+}
+.hd1Toggle{
+    border: none;
 }
 .hd1 .logo{
     display: inline-block;
@@ -261,6 +273,14 @@ h2{
     top: 24%;
     font-size: 18px;
     font-weight: bold;
+}
+.hd1 .logo a span:nth-child(3){
+    position: absolute;
+    top: 6px;
+    transform: scale(.8);
+    right: -20px;
+    font-size: 14px;
+    font-weight: 400;
 }
 .srchbox {
     position: relative;
@@ -278,16 +298,7 @@ h2{
 .searchDiv .srchtxt{
     width: 100%;
 }
-.searchDiv .srchSuggestion{
-    position: absolute;
-    background: white;
-    top: 36px;
-    max-height: 200px;
-    width: 80%;
-    overflow: scroll;
-    color: rgba(0, 0, 0, 0.623);
-}
-.searchDiv input{
+.searchDiv input , .srchtxtMbl input{
     background: #181818;
     border: none;
     padding: 8px 10px;
@@ -297,6 +308,39 @@ h2{
     color: rgba(255, 255, 255, 0.726);
     display: inline-block;
     font-size: 16px;
+    transition: .2s;
+}
+.mblSrchDiv {
+    position: relative;
+    top: 15px;
+}
+.mblSrchDivToggle{
+    display: block !important;
+}
+.mblSrchBtn{
+    display: none;
+}
+.srchtxtMbl input{
+    padding: 5px 10px;
+    width: 75%;
+    display: inline-block;
+    font-size: 15px;
+    border: none;
+    margin-left: 35px;
+    border-radius: 3px;
+}
+.srchtxtMbl input:focus{
+    border: none;
+    outline: none;
+}
+.srchtxtMbl .backArrow{
+    position: absolute;
+    top: 5px;
+    left: 10px;
+    cursor: pointer;
+}
+.fa-microphone-alt{
+    margin: 2%;
 }
 .searchDiv input::placeholder{
     font-size: 16px;
@@ -332,7 +376,13 @@ h2{
 .icons ul li:hover{
     background: transparent;
 }
-.left {
+.mic{
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    padding-left: 20px;
+}
+.right {
     float: right;
     margin-right: 4%;
     top: 50% ;
@@ -340,37 +390,60 @@ h2{
     height: 100%;
     width: 140px;
 }
-.left ul {
+.right ul {
     display: flex;
     align-items:center;
     justify-content: space-around;
 }
-.left ul li a {
+.right ul  li.mblSrchIco{
+    display: none;
+}
+.right ul li a {
     padding: 0 5px;
 }
-.left ul li a i.pro{
+.right ul li a i.pro{
     font-size: 22px;
 }
-.left ul li a i{
+.right ul li a i{
     font-size: 18px;
     font-weight:600;
 }
-.hd2{
-    height: 50%;
+.right ul li a i.fa-bell{
+    position: relative;
+}
+.right ul li a i.fa-bell span {
+    position: absolute;
+    top: -40%;
+    right: -30%;
+    font-size: 14px;
+    background: #cc1c1c;
+    border-radius: 50%;
+    padding: 2px;
+    font-weight: normal;
+}
+.hd2 {
+    height: 47%;
     display: flex;
     align-items: center;
     border-bottom: solid 1px #424242;
     position: relative;
     font-weight: 600;
+    width: 100%;
     color: rgba(255, 255, 255, 0.603);
 }
-.hd2 ul{
-    margin: 0 50px;
-    white-space: nowrap;
+.hd2 .suggestionList {
     overflow-x: hidden;
-    margin-left: 65px;
+    margin: 0 50px;
+    width: 90%;
+    white-space: nowrap;
+    transition: .5s;
+    scroll-behavior: smooth;
+    border-radius: 100px;
 }
-.hd2 ul li{
+.hd2 .suggestionList ul{
+   margin-left: 0%;
+}
+.hd2 .suggestionList ul li{
     display: inline-block;
     background: #424242;
     border-radius: 25px;
@@ -388,6 +461,7 @@ h2{
     margin: 0 20px;
     z-index: 5;
     position: absolute;
+    cursor: pointer;
 }
 .hd2 .btn1{
     left: 0%;
@@ -419,14 +493,14 @@ h2{
     flex-wrap:wrap;
 }
 .videoBox {
-    width: 260px;
-    height: 258px;
+    width: 265px;
+    height: 265px;
     margin: 5px;
     overflow: hidden;
     position: relative;
     cursor: pointer;
     border-radius: 3px;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
     text-align: center;
 }
 .videoBox .thumbnail{
@@ -439,8 +513,9 @@ h2{
     align-items: center;
     justify-content: center;
 }
-.videoBox .thumbnail img{
-    width:100%;
+.videoBox .thumbnail img {
+    width: 100%;
+    object-fit: cover;
 }
 .videoBox .thumbnail .duration{
     position: absolute;
@@ -476,12 +551,12 @@ h2{
     font-weight: 600;
     display: inline;
 }
-.icon{
+.icon {
     position: absolute;
     width: 40px;
     height: 40px;
     background: rgb(138, 138, 138);
-    top: 180px;
+    top: 195px;
     left: 5px;
     border-radius: 50%;
     overflow: hidden;
@@ -521,17 +596,17 @@ h2{
     margin: 10px 0;
 }
 .userInput {
-text-align: center;
-width: 300px;
-background-color: #2d2d2d;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-border-radius: 10px;
-margin: 15px 0;
-/* box-shadow: 0 0 5px black; */
-padding: 10px 3px   ;
+    text-align: center;
+    width: 300px;
+    background-color: #2d2d2d;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    margin: 15px 0;
+    /* box-shadow: 0 0 5px black; */
+    padding: 10px 3px   ;
 }
 .userInput h2{
     margin: 10px 0;
@@ -567,7 +642,17 @@ font-weight: 600;
 text-align: center;
 margin: 10px 0;
 }
-
+@media only screen and (max-width:768px) {
+.right ul  li.mblSrchIco{
+    display: block;
+}
+.right ul  li.bars{
+    display: none;
+}
+.srchbox{
+    display: none;
+}
+}
 @media only screen and (max-width: 600px) {
 .footer p{
     font-size: 16px;
@@ -577,17 +662,90 @@ margin: 10px 0;
     padding-left: 1%;
 }
 }
-@media only screen and (max-width: 450px) {
-    .videoBox{
-        width: 100%;
+@media only screen and (max-width: 500px) {
+.header {
+    width: 100%;
+    height: 120px;
+    background: #252525;
+    margin-left: 0px;
 }
-.mic ul{
+.headerToggle{
+    height: 64px;
+}
+.bodySidebar {
+    top: inherit;
+    bottom: 0%;
+    width: 100%;
+    background: #252525;
+    height: 60px;
+    z-index: 5;
+}
+.bodySidebar {
+    height: 41px;
+}
+.bodySidebar .main{
+    height: 100%;
+}
+.bodySidebar .main .bodyBar {
     display: none;
 }
+.bodySidebar .main ul {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0;
+}
+.bodySidebar .main ul li {
+    transform: scale(0.8);
+}
+
+.bodySidebar .main ul li:nth-child(3){
+    display: flex;
+}
+.bodySidebar .main ul li:hover{
+    background: transparent;
+}
+.hd1 .logo {
+    margin-left: 2px;
+    transform: scale(0.8);
+}
+.hd2Toggle{
+    display: none;
+}
+.hd2 .suggestionList{
+    width: 100%;
+    margin: 0 5px;
+    border-radius: 0%;
+}
+.hd2 .btn{
+    display: none;
+}
+.page {
+    margin-left: 0px;
+    width: 100%;
+    margin-top: 125px;
+    justify-content: flex-start;
+    min-height: calc(90vh - 180px);
+}
 .box {
-    margin: 7px;
+    margin: 0px;
 }
 .title p {
     font-size: 15px;
 }
+.footer {
+    font-size: 25px;
+    margin-left: 0px;
+    width: 100%;
+    height: 180px;
+    margin-bottom: 42px;
+} 
+}
+@media only screen and (max-width: 390px) {
+    .videoBox{
+        width: 100%;
+    }
+
 }

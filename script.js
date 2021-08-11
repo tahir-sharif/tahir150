@@ -28,15 +28,27 @@ userSearch.addEventListener('keyup' , (enter)=>{
     if(enter.keyCode === 13){
         searchBtn.click();
     }
-})
-searchBtn.addEventListener('click' ,function search(){
+});
+searchBtn.addEventListener('click' ,function(){
 
     userSearch = userSearch = document.querySelector('.userSearch').value;
     if(userSearch != ""){
     linkGenerator(userSearch);
+    }   
+});
+
+userSearchMbl = userSearchMbl = document.querySelector('.userSearchMbl');
+mblSrchBtn = document.querySelector('.mblSrchBtn');
+mblSrchBtn.addEventListener('click' , function(){
+    if(userSearchMbl.value != ''){
+        linkGenerator(userSearchMbl.value);
     }
-    
-})
+});
+userSearchMbl.addEventListener('keyup' ,(enter) => {
+    if(enter.keyCode === 13){
+        mblSrchBtn.click()
+    }
+});
 function linkGenerator(userSearch){
 
         var link = 'https://www.youtube.com/results?search_query=' + userSearch;
@@ -212,3 +224,24 @@ function removeValue(){
     videoLink.value = '';
     thumbnailPath.value = '';
 };
+
+function mblSrch(){
+var others = document.querySelector('.others');
+var mblSrchDiv = document.querySelector('.mblSrchDiv');
+var hd1 = document.querySelector('.hd1');
+var hd2 = document.querySelector('.hd2');
+var header = document.querySelector('.header');
+var userSearchMbl = document.querySelector('.userSearchMbl');
+
+others.classList.toggle('toggleOthers');
+mblSrchDiv.classList.toggle('mblSrchDivToggle');
+hd1.classList.toggle('hd1Toggle')
+hd2.classList.toggle('hd2Toggle')
+header.classList.toggle('headerToggle')
+userSearchMbl.focus()
+}
+
+var suggestionList = document.querySelector('.suggestionList');
+function suggestionScroll(value){
+    suggestionList.scroll(value , 0)
+}
