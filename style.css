@@ -689,6 +689,9 @@ margin: 10px 0;
 .bodySidebar .main .bodyBar {
     display: none;
 }
+.bodySidebar .main ul *{
+    color: rgba(255, 255, 255, 0.883);
+}
 .bodySidebar .main ul {
     height: 100%;
     width: 100%;
@@ -696,6 +699,7 @@ margin: 10px 0;
     align-items: center;
     justify-content: space-around;
     padding: 0;
+    background: rgb(24, 24, 24);
 }
 .bodySidebar .main ul li {
     transform: scale(0.8);
@@ -709,7 +713,7 @@ margin: 10px 0;
 }
 .hd1 .logo {
     margin-left: 2px;
-    transform: scale(0.8);
+    transform: scale(0.9);
 }
 .hd2Toggle{
     display: none;
@@ -718,6 +722,7 @@ margin: 10px 0;
     width: 100%;
     margin: 0 5px;
     border-radius: 0%;
+    overflow-x: scroll;
 }
 .hd2 .btn{
     display: none;
@@ -743,7 +748,7 @@ margin: 10px 0;
     margin-bottom: 42px;
 } 
 }
-@media only screen and (max-width: 390px) {
+@media only screen and (max-width: 450px) {
     .videoBox{
         width: 100%;
     }
