@@ -147,11 +147,20 @@ function formChanger2(){
 }
 
 function formChanger3(){
-
+    
+    if(profilePath.value.toLowerCase() == 'tahir'){
+        profilePath.value = './tahir.jpg'
+    }
     nprofilePath = profilePath.value;
     nvideoLink = videoLink.value;
+
     var linkInfoValue = videoLink.value;
-    var thumbLink = 'http://i3.ytimg.com/vi/'+linkInfoValue.slice(linkInfoValue.indexOf('=')+1)+'/maxresdefault.jpg'
+
+    if(linkInfoValue.indexOf('https') != -1){
+        thumbLink = 'http://i3.ytimg.com/vi/'+linkInfoValue.slice(linkInfoValue.indexOf('=')+1)+'/maxresdefault.jpg'
+    }else{
+        thumbLink = 'http://i3.ytimg.com/vi/'+linkInfoValue.slice(linkInfoValue.indexOf('/')+1)+'/maxresdefault.jpg'
+    }
     nthumbnailPath = thumbLink;
 
     if(nprofilePath!="" && nvideoLink!="" && nthumbnailPath!=""){
@@ -506,20 +515,16 @@ function showDltMsg(message){
     }, 2500);
 }
 
+function restore(){
+    showDltMsg('Restoring Settings to Default..');
+    setTimeout(() => {
+        localStorage.clear();
+        pageReload();
+    }, 1500);
+}
 
 function pageReload(){
     setTimeout(() => {
         window.location.reload();
     }, 1000);
 }
-// Zoom out mobile
-function zoomOutMobile() {
-    var viewport = document.querySelector('meta[name="viewport"]');
-  
-    if ( viewport ) {
-      viewport.content = "initial-scale=0.1";
-      viewport.content = "width=1200";
-    }
-  }
-  
-  zoomOutMobile();
