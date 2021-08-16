@@ -10,6 +10,18 @@
     <title>YouTube - Tahir</title>
 </head>
 <body>
+<div class="dltMsg" style="display: none;">Successfully deleted Hye kahan ka ir..</div>
+<div class="dltAlert" style="display: none;">
+    <div class="dltTxt">
+        <p>Do you Want to Delete? </p>
+        <p></p>
+    </div>
+    <div class="dltBtns">
+        <button>Yes</button>
+        <button onclick="dltHide()">No</button>
+    </div>
+</div>
+
 <div class="container">  
     <div class="bodySidebar">
         <div class="main">
@@ -262,8 +274,13 @@
 </div>
 </div>
 <div class="page">
-    <div class="box">        
+    <div class="box">
+        <!-- <div class="videoBox">
+            <div class="thumbnail"><a href="'+link+'"><img src="' + thumbnail + '"></a><div class="duration"><span>' + duration + '</span></div></div><div class="titles"><div class="title"><p onclick="deleteVideo(' + i + ')">' + title + '</p></div><span style="display: block;">' + name + '</span><span>' + views + ' views' + " . " +  period +' ago'  + '</span></div><div class="icon"><img src="' + icon + '"></div><div class="dots" onclick="deleteVideo('+i+')"><i class="fas fa-trash"></i></div></div>
+        </div> -->
     </div>
+</div>
+
 
 <div class="userInput">
     <div class="createButton">
@@ -286,7 +303,7 @@
         <div class="linkInfo" style="display: none;">
             <h3>Paste your links</h3>
             <input class="profilePath" type="text" placeholder="Paste your icon's link">
-            <input class="thumbnailPath" type="text" placeholder="Video Thumbnail Link">
+            <!-- <input class="thumbnailPath" type="text" placeholder="Video Thumbnail Link" disabled> -->
             <input class="videoLink" type="text" placeholder="Link opens when user clicks">
             <input onclick="formChanger3()" type="button" value="Create..">
         </div>
@@ -295,15 +312,16 @@
 </div>
 
     <div class="footer" id="bottom">
-        <p>
-            This Website Mainly Used 
-            <span>functions(Parameters)</span>
-            and <span>innerHTML.</span>
-            InshaAllah Objects & LocalStorage  Will be include soon !
-        </p>
-        <p>
-            Completely Developed By <span>Tahir <i class="fas fa-user-check"></i></span>
-        </p>
+        <div class="footerContent">
+                <ul>
+                    <li>✔️ Objects Used </li>
+                    <li>✔️ Constructor Used </li>
+                    <li>✔️ Local Storage Used </li>
+                </ul>
+            <p>
+                After 10 days of hard Work Completely Developed By <span>Tahir <i class="fas fa-user-check"></i></span>
+            </p>
+        </div>
     </div>
 </div>
 <script src="script.js"></script>

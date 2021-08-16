@@ -116,7 +116,6 @@ var views = document.querySelector('.views');
 var period = document.querySelector('.period');
 var profilePath = document.querySelector('.profilePath');
 var videoLink = document.querySelector('.videoLink');
-var thumbnailPath = document.querySelector('.thumbnailPath');
 
 function formChanger1(){
     createButton.style.display = 'none'
@@ -151,21 +150,23 @@ function formChanger3(){
 
     nprofilePath = profilePath.value;
     nvideoLink = videoLink.value;
-    nthumbnailPath = thumbnailPath.value;
+    var linkInfoValue = videoLink.value;
+    var thumbLink = 'http://i3.ytimg.com/vi/'+linkInfoValue.slice(linkInfoValue.indexOf('=')+1)+'/maxresdefault.jpg'
+    nthumbnailPath = thumbLink;
 
     if(nprofilePath!="" && nvideoLink!="" && nthumbnailPath!=""){
         err.style.color = 'rgb(91 224 0)'
         
 
-
-        localLength = localStorage.getItem('localLength')
-        localLength = +localLength+1
-        localStorage.setItem('localLength' , localLength);
-        console.log('here Length : ' , localLength)
-
         video = new newVideo(nthumbnailPath , nduration , ntitles , nchannelName , nviews , nperiod , nprofilePath , nvideoLink);
         videoArr.push(video);
-        saveVideo();
+        if(localStorage.getItem('localUserLength') == undefined){
+            localStorage.setItem('localUserLength' , 1)
+            userLength = localStorage.getItem('localUserLength');
+        }else{
+            userLength = +(localStorage.getItem('localUserLength'))
+        }
+        userSaveVideo(userLength);
 
 
 
@@ -255,6 +256,8 @@ var videoArr = [
         link : 'https://www.youtube.com/watch?v=SIqnvMt8IMU'
     }
 ]
+
+
 function newVideo(thumbnail , duration ,title , name , views , period , icon , link){
     this.thumbnail = thumbnail;
     this.duration = duration;
@@ -269,11 +272,11 @@ function newVideo(thumbnail , duration ,title , name , views , period , icon , l
 console.log(videoArr);
 if(localStorage.getItem('localLength') == undefined){
     localStorage.setItem('localLength' , 0);
-    var currentLength = localStorage.getItem('localLength')
+    var currentLength = localStorage.getItem('localLength');
 };
 function saveVideo(){
 
-if(localStorage.getItem('localLength') == undefined || +localStorage.getItem('localLength') <    1){
+if(localStorage.getItem('localLength') == undefined || + +(localStorage.getItem('localLength'))<    1){
 
     console.log(localStorage.getItem('localLength'))
     localStorage.setItem('localLength' , videoArr.length);
@@ -287,11 +290,13 @@ currentLength = localStorage.getItem('localLength');
 
 
 var lastdur;
-
+if(localStorage.getItem('def') == undefined){
+    localStorage.setItem('def' , 'true')
+};
 for(i=0; i<=currentLength ; i++){
 
     lastdur =  'duration' + i;
-    if(localStorage.getItem(lastdur) == undefined){
+    if(localStorage.getItem(lastdur) == undefined && localStorage.getItem('def') == 'true'){
     
         localStorage.setItem('thumbnail'+i, videoArr[i].thumbnail);
         localStorage.setItem('duration'+i, videoArr[i].duration);
@@ -303,7 +308,7 @@ for(i=0; i<=currentLength ; i++){
         localStorage.setItem('link'+i, videoArr[i].link);
         localStorage.setItem('localLength' , i);
 
-        console.log('Setting Video' + (i+1) + ' in localStorage') 
+        console.log('Setting Video' + videoArr[i].title + ' in localStorage');
 
     }
 
@@ -313,6 +318,37 @@ console.log(localStorage)
 console.log('Successfully Completed the Operation !')
 }
 saveVideo();
+
+function deleteVideo(i){
+
+    var thumbnail = 'thumbnail' +i;
+    var duration = 'duration' +i;
+    var title = 'title' +i;
+    var name = 'name' +i;
+    var views = 'views' +i;
+    var period = 'period' +i;
+    var icon = 'icon' +i;
+    var link = 'link' +i;
+    localStorage.setItem('def' , 'false');
+    // localStorage.setItem('localLength' ,(+localStorage.getItem('localLength')-1));
+    
+
+    var showTit = localStorage.getItem(title);
+    console.log('Successfully deleted "' + showTit.slice(0,13) + '..."')
+    showDltMsg('Successfully deleted "' + showTit.slice(0,13) + '..."');
+
+    localStorage.removeItem(thumbnail)
+    localStorage.removeItem(duration)
+    localStorage.removeItem(title)
+    localStorage.removeItem(name)
+    localStorage.removeItem(views)
+    localStorage.removeItem(period)
+    localStorage.removeItem(icon)
+    localStorage.removeItem(link)
+    dltHide();
+    pageReload();
+
+};
 function videoToDOM(i){
 
     var thumbnail = 'thumbnail' +i;
@@ -324,6 +360,7 @@ function videoToDOM(i){
     var icon = 'icon' +i;
     var link = 'link' +i;
 
+
     thumbnail = localStorage.getItem(thumbnail)
     duration = localStorage.getItem(duration)
     title = localStorage.getItem(title)
@@ -333,13 +370,147 @@ function videoToDOM(i){
     icon = localStorage.getItem(icon)
     link = localStorage.getItem(link)
 
-    
+    if(thumbnail != null){
+    console.log(i+1 + " : " + title)
 
     var myDiv = document.querySelector('.box');
     var div = document.createElement('div');
     myDiv.appendChild(div);
     div.classList.add('videoBox')
-    div.innerHTML = '<div class="thumbnail"><a href="'+link+'" target="_blank"><img src="' + thumbnail + '"></a><div class="duration"><span>' + duration + '</span></div></div><div class="titles"><div class="title"><p>' + title + '</p></div><span style="display: block;">' + name + '</span><span>' + views + ' views' + " . " +  period +' ago'  + '</span></div><div class="icon"><img src="' +icon + '"></div></div>'
+    div.innerHTML ='<div class="thumbnail"><a href="'+link+'"><img src="' + thumbnail + '"></a><div class="duration"><span>' + duration + '</span></div></div><div class="titles"><div class="title"><p onclick="deleteVideo(' + i + ')">' + title + '</p></div><span style="display: block;">' + name + '</span><span>' + views + ' views' + " . " +  period +' ago'  + '</span></div><div class="icon"><img src="' + icon + '"></div><div class="dots" onclick="dltConfirm(' + i + ')"><i class="fas fa-trash"></i></div></div>'  
+    }
+};
+
+var divIsCreated = false
+function userSaveVideo(userLength){
+       
+            localStorage.setItem('UserThumbnail'+userLength, videoArr[7].thumbnail);
+            localStorage.setItem('UserDuration'+userLength, videoArr[7].duration);
+            localStorage.setItem('UserTitle'+userLength, videoArr[7].title);
+            localStorage.setItem('UserName'+userLength, videoArr[7].name);
+            localStorage.setItem('UserViews'+userLength, videoArr[7].views);
+            localStorage.setItem('UserPeriod'+userLength, videoArr[7].period);
+            localStorage.setItem('UserIcon'+userLength, videoArr[7].icon);
+            localStorage.setItem('UserLink'+userLength, videoArr[7].link);
+            localStorage.setItem('localUserLength' , +(localStorage.getItem('localUserLength'))+1 );
+    
+            console.log('Setting Video' + videoArr[7].UserTitle + ' in localStorage');
+            var localUserLength = +(localStorage.getItem('localUserLength'));
+            divIsCreated = true;
+            for(var i=1; i<=localUserLength;  i++){
+                videoToDOMUser(i);
+            }
+}
+function videoToDOMUser(i){
+
+    var thumbnail = 'UserThumbnail' +i;
+    var duration = 'UserDuration' +i;
+    var title = 'UserTitle' +i;
+    var name = 'UserName' +i;
+    var views = 'UserViews' +i;
+    var period = 'UserPeriod' +i;
+    var icon = 'UserIcon' +i;
+    var link = 'UserLink' +i;
+
+
+    thumbnail = localStorage.getItem(thumbnail);
+    duration = localStorage.getItem(duration);
+    title = localStorage.getItem(title);
+    name = localStorage.getItem(name);
+    views = localStorage.getItem(views);
+    period = localStorage.getItem(period);
+    icon = localStorage.getItem(icon);
+    link = localStorage.getItem(link);
+
+    if(thumbnail != null){
+    console.log(i + " : " + title);
+
+    var myDiv = document.querySelector('.box');
+    var div = document.createElement('div');
+    myDiv.appendChild(div);
+    div.classList.add('videoBox')
+    div.innerHTML ='<div class="thumbnail"><a href="'+link+'"><img src="' + thumbnail + '"></a><div class="duration"><span>' + duration + '</span></div></div><div class="titles"><div class="title"><p onclick="deleteVideo(' + i + ')">' + title + '</p></div><span style="display: block;">' + name + '</span><span>' + views + ' views' + " . " +  period +' ago'  + '</span></div><div class="icon"><img src="' + icon + '"></div><div class="dots" onclick="dltUserConfirm(' + i + ')"><i class="fas fa-trash"></i></div></div>'  
+    }
+    if(divIsCreated){
+        pageReload();
+        window.location.reload();
+    };
+};
+var dltAlert = document.querySelector('.dltAlert');
+var dltTxt = document.querySelectorAll('.dltTxt p')[1];
+function dltConfirm(i){
+    var title = 'title' +i;
+    var showTit = localStorage.getItem(title);
+    dltTxt.innerText = showTit;
+    dltAlert.style.display = 'block';
+    var dltButton = document.querySelectorAll('.dltBtns button')[0];
+    dltButton.innerHTML = '<span onclick="deleteVideo(' + i +')">Yes</span>'
+}
+function dltUserConfirm(i){
+    var title = 'UserTitle' +i;
+    var showTit = localStorage.getItem(title);
+    dltTxt.innerText = showTit;
+    dltAlert.style.display = 'block';
+    var dltButton = document.querySelectorAll('.dltBtns button')[0];
+    dltButton.innerHTML = '<span onclick="deleteUserVideo(' + i +')">Yes</span>'
+}
+function dltHide(){
+    dltAlert.style.display = 'none';
+
+}
+function deleteUserVideo(i){
+
+    console.log(i)
+
+    var thumbnail = 'UserThumbnail' +i;
+    var duration = 'UserDuration' +i;
+    var title = 'UserTitle' +i;
+    var name = 'UserName' +i;
+    var views = 'UserViews' +i;
+    var period = 'UserPeriod' +i;
+    var icon = 'UserIcon' +i;
+    var link = 'UserLink' +i;
+    localStorage.setItem('localUserLength' ,(+localStorage.getItem('localUserLength')-1));
+    
+
+    var showTit = localStorage.getItem(title);
+    console.log('Successfully deleted "' + showTit.slice(0,13) + '..."')
+    showDltMsg('Successfully deleted "' + showTit.slice(0,13) + '..."');
+
+    localStorage.removeItem(thumbnail)
+    localStorage.removeItem(duration)
+    localStorage.removeItem(title)
+    localStorage.removeItem(name)
+    localStorage.removeItem(views)
+    localStorage.removeItem(period)
+    localStorage.removeItem(icon)
+    localStorage.removeItem(link)
+    dltHide()
+    pageReload();
+
+};
+
+if(localStorage.getItem('localUserLength') != undefined){
+    var localUserLength = +(localStorage.getItem('localUserLength'));
+    for(var i=1; i<=localUserLength;  i++){
+        videoToDOMUser(i);
+    };
+}
+
+function showDltMsg(message){
+    msgDiv =  document.querySelector('.dltMsg');
+    msgDiv.style.display = 'block'
+    msgDiv.innerHTML = message;
+    setTimeout(() => {
+    msgDiv.style.display = 'none'
+    }, 2500);
+}
+
+
+function pageReload(){
+    setTimeout(() => {
+        window.location.reload();
+    }, 1000);
 }
 // Zoom out mobile
 function zoomOutMobile() {
