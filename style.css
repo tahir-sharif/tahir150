@@ -411,6 +411,9 @@ h2{
 .right ul li a {
     padding: 0 5px;
 }
+.right ul li a.rst i{
+    color: #0fce2f;
+}
 .right ul li a i.pro{
     font-size: 22px;
 }
@@ -459,6 +462,9 @@ h2{
     border-radius: 25px;
     padding: 6px 10px;
     border: #646161 solid 1px;
+}
+.hd2 .suggestionList ul li:hover{
+    background: #2f2f2f;
 }
 .hd2 .btn{
     background: rgba(0, 0, 0, 0.582);
@@ -582,7 +588,7 @@ h2{
     position: absolute;
     width: 13px;
     height: 10px;
-    top: 258px;
+    top: 245px;
     right: 5px;
     border-radius: 50%;
     color: rgb(77, 77, 77);
@@ -676,7 +682,7 @@ h2{
 }
 .footer .footerContent p {
     font-weight: 600;
-    font-size: 18px;
+    font-size: 15px;
     line-height: 25px;
     color: #b5b5b5;
 }
@@ -686,38 +692,42 @@ h2{
 }
 .dltMsg {
     position: fixed;
-    top: 90%;
+    top: 84%;
     z-index: 50;
     padding: 8px 12px;
-    font-size: 10px;
-    background: rgba(27, 27, 27, 0.904);
+    font-size: 16px;
+    background: rgb(115 104 104 / 95%);
     font-weight: 600;
     border-radius: 15px;
-    color: rgb(216, 216, 216);
+    color: rgb(255 238 238);
+    box-shadow: 0 0 8px #00000040;
 }
-.dltAlert{
+.dltAlert {
     position: fixed;
     z-index: 50;
-    background: rgba(27, 27, 27, 0.966);
+    background: rgb(105 105 105 / 97%);
     top: 50%;
     transform: translate(0% , -50%);
-    width: 300px;
-    height: 200px;
+    width: 284px;
+    height: 203px;
     color: rgb(216, 216, 216);
     text-align: center;
     border-radius: 10px;
+    padding: 11px;
+    box-shadow: 0 0 20px black;
 }
-.dltAlert p:nth-child(1){
-
+.dltAlert p:nth-child(1) {
     font-size: 20px;
     font-weight: 600;
     margin-bottom: 12px;
     margin-top: 20px;
+    text-shadow: 0 0 8px #000000b0;
 }
-.dltAlert p:nth-child(2){
+.dltAlert p:nth-child(2) {
     margin: 0 5px;
     margin-top: 25px;
     line-height: 20px;
+    text-shadow: 0 0 6px black;
 }
 .dltAlert .dltBtns{
     width: 100%;
@@ -727,8 +737,8 @@ h2{
     margin-top: 25px;
     justify-content: space-evenly;
 }
-.dltAlert .dltBtns button{
-    background: #181818;
+.dltAlert .dltBtns button {
+    background: #00000000;
     color: white;
     outline: none;
     border: none;
@@ -736,6 +746,7 @@ h2{
     padding: 5px 8px;
     border-radius: 6px;
     cursor: pointer;
+    box-shadow: 0 0 9px #00000085;
 }
 @media only screen and (max-width:768px) {
 .right ul  li.mblSrchIco{
@@ -773,9 +784,7 @@ h2{
     background: #252525;
     height: 60px;
     z-index: 5;
-}
-.bodySidebar {
-    height: 41px;
+    height: 48px;
 }
 .bodySidebar .main{
     height: 100%;

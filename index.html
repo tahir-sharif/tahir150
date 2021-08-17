@@ -231,7 +231,7 @@
             </div>
             <div class="icons right" style="display: inline-block;">
                 <ul>
-                    <li><a onclick="restore()"><i class="fas fa-broom"></i></a></li>
+                    <li><a onclick="restore()" class="rst"><i class="fas fa-broom"></i></a></li>
                     <li class="mblSrchIco"><a onclick="mblSrch()"><i class="far fa-search"></i></a></li>
                     <li class="bars"><a><i class="fas fa-bars"></i></a></li>
                     <li><a><i class="fas fa-bell"><span>9+</span></i></a></li>
@@ -252,21 +252,20 @@
             <button class="btn btn1" onclick="suggestionScroll(0)"><i class="fas fa-arrow-up"></i></button>
             <div class="suggestionList">
             <ul>
-                <li>Comedies</li>
-                <li>Mixes</li>
-                <li>Motu Patlu</li>
-                <li>Doraemon</li>
-                <li>CID</li>
-                <li>Pakistani Dramas</li>
-                <li>Music</li>
-                <li>Tariq Jameel</li>
-                <li>Live</li>
-                <li>Inventions</li>
-                <li>Arjit Singh</li>
-                <li>Conversions</li>
-                <li>Recently Uploaded</li>
-                <li>JavaScript</li>
-                <li>Raza Saqib Mustufai</li>    
+                <li onclick="linkGenerator(this.innerText)" >Comedies</li>
+                <li onclick="linkGenerator(this.innerText)" >Mixes</li>
+                <li onclick="linkGenerator(this.innerText)" >Motu Patlu</li>
+                <li onclick="linkGenerator(this.innerText)" >Doraemon</li>
+                <li onclick="linkGenerator(this.innerText)" >Raza Saqib Mustufai</li>   
+                <li onclick="linkGenerator(this.innerText)" >CID</li>
+                <li onclick="linkGenerator(this.innerText)" >Tariq Jameel</li>
+                <li onclick="linkGenerator(this.innerText)" >Pakistani Dramas</li>
+                <li onclick="linkGenerator(this.innerText)" >Music</li>
+                <li onclick="linkGenerator(this.innerText)" >Live</li>
+                <li onclick="linkGenerator(this.innerText)" >Inventions</li>
+                <li onclick="linkGenerator(this.innerText)" >Arjit Singh</li>
+                <li onclick="linkGenerator(this.innerText)" >Conversions</li>
+                <li onclick="linkGenerator(this.innerText)" >JavaScript</li>
             </ul>
         </div>
             <button class="btn btn2" onclick="suggestionScroll(suggestionList.scrollWidth)"><i class="fas fa-arrow-up"></i></button>
@@ -292,19 +291,19 @@
         <p class="err">&nbsp;</p>
         <div class="channelInfo">
             <h3>Channel information</h3>
-            <input class="channelName" type="text" placeholder="Channel Name">
-            <input class="vidTit" type="text" placeholder="Video Title">
-            <input class="vidDuration" type="text" placeholder="Video Duaration ">
-            <input class="views" type="text" placeholder="Your Views">
-            <input class="period" type="text" placeholder="Enter Video's Period like : 5 years">
+            <input class="channelName" type="text" placeholder="Channel Name" onfocus="focusShNHide()" onfocusout="focusOutShNHide()">
+            <input class="vidTit" type="text" placeholder="Video Title" onfocus="focusShNHide()" onfocusout="focusOutShNHide()">
+            <input class="vidDuration" type="text" placeholder="Video Duaration , eg : 15:23" onfocus="focusShNHide()" onfocusout="focusOutShNHide()">
+            <input class="views" type="text" placeholder="Your Views , eg : 5.2K" onfocus="focusShNHide()" onfocusout="focusOutShNHide()">
+            <input class="period" type="text" placeholder="Enter Video's Period like , 5 years" onfocus="focusShNHide()" onfocusout="focusOutShNHide()">
             <input onclick="formChanger2()" type="button" value="Next">
         </div>
 
         <div class="linkInfo" style="display: none;">
             <h3>Paste your links</h3>
-            <input class="profilePath" type="text" placeholder="Paste your icon's link">
+            <input class="profilePath" type="text" placeholder='Paste your icon link Or type "Tahir" ' onfocus="focusShNHide()" onfocusout="focusOutShNHide()">
             <!-- <input class="thumbnailPath" type="text" placeholder="Video Thumbnail Link" disabled> -->
-            <input class="videoLink" type="text" placeholder="Link opens when user clicks">
+            <input class="videoLink" type="text" placeholder="video Link opens when user clicks" onfocus="focusShNHide()" onfocusout="focusOutShNHide()">
             <input onclick="formChanger3()" type="button" value="Create..">
         </div>
     </div>
@@ -319,7 +318,7 @@
                     <li>✔️ Local Storage Used </li>
                 </ul>
             <p>
-                After 10 days of hard Work Completely Developed By <span>Tahir <i class="fas fa-user-check"></i></span>
+                After 15 days of hard Work Completely Developed By <span>Tahir <i class="fas fa-user-check"></i></span>
             </p>
         </div>
     </div>

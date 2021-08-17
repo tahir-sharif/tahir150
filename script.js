@@ -99,7 +99,8 @@ hd2.classList.toggle('hd2Toggle')
 header.classList.toggle('headerToggle')
 userSearchMbl.focus()
 }
-// Tags
+// Tags horizontal Scroll 
+// (value will be send from btns onclick's parameter) "I couldn't Scroll this...It will Scroll to end"
 var suggestionList = document.querySelector('.suggestionList');
 function suggestionScroll(value){
     suggestionList.scroll(value , 0)
@@ -136,7 +137,7 @@ function formChanger2(){
     if(nchannelName != '' && ntitles != '' &&nduration != '' && nviews != '' && nperiod != ''){
         err.style.color = 'rgb(91 224 0)'
         showMsg('Okay , Let paste your Links here')
-        // Show Link box
+        // Show Link input box
         channelInfo.style.display = 'none'
         linkInfo.style.display = 'block';
     }else{
@@ -155,12 +156,7 @@ function formChanger3(){
     nvideoLink = videoLink.value;
 
     var linkInfoValue = videoLink.value;
-
-    if(linkInfoValue.indexOf('https') != -1){
-        thumbLink = 'http://i3.ytimg.com/vi/'+linkInfoValue.slice(linkInfoValue.indexOf('=')+1)+'/maxresdefault.jpg'
-    }else{
-        thumbLink = 'http://i3.ytimg.com/vi/'+linkInfoValue.slice(linkInfoValue.indexOf('/')+1)+'/maxresdefault.jpg'
-    }
+    thumbLink = 'http://i3.ytimg.com/vi/'+linkInfoValue.slice(-11)+'/maxresdefault.jpg'
     nthumbnailPath = thumbLink;
 
     if(nprofilePath!="" && nvideoLink!="" && nthumbnailPath!=""){
@@ -192,7 +188,20 @@ function formChanger3(){
         showMsg('incomplete Information !')
     };
 }
+// contruct object from user input
+function newVideo(thumbnail , duration ,title , name , views , period , icon , link){
+    this.thumbnail = thumbnail;
+    this.duration = duration;
+    this.title = title;
+    this.name = name;
+    this.views = views;
+    this.period = period;
+    this.icon = icon;
+    this.link = link;
+}
 
+
+// Default Video , Array of Objects
 var videoArr = [
     {
         thumbnail : 'thumbnail1.jpg' ,
@@ -265,24 +274,13 @@ var videoArr = [
         link : 'https://www.youtube.com/watch?v=SIqnvMt8IMU'
     }
 ]
-
-
-function newVideo(thumbnail , duration ,title , name , views , period , icon , link){
-    this.thumbnail = thumbnail;
-    this.duration = duration;
-    this.title = title;
-    this.name = name;
-    this.views = views;
-    this.period = period;
-    this.icon = icon;
-    this.link = link;
-}
  
 console.log(videoArr);
 if(localStorage.getItem('localLength') == undefined){
     localStorage.setItem('localLength' , 0);
     var currentLength = localStorage.getItem('localLength');
 };
+// For Default Videos
 function saveVideo(){
 
 if(localStorage.getItem('localLength') == undefined || + +(localStorage.getItem('localLength'))<    1){
@@ -327,37 +325,6 @@ console.log(localStorage)
 console.log('Successfully Completed the Operation !')
 }
 saveVideo();
-
-function deleteVideo(i){
-
-    var thumbnail = 'thumbnail' +i;
-    var duration = 'duration' +i;
-    var title = 'title' +i;
-    var name = 'name' +i;
-    var views = 'views' +i;
-    var period = 'period' +i;
-    var icon = 'icon' +i;
-    var link = 'link' +i;
-    localStorage.setItem('def' , 'false');
-    // localStorage.setItem('localLength' ,(+localStorage.getItem('localLength')-1));
-    
-
-    var showTit = localStorage.getItem(title);
-    console.log('Successfully deleted "' + showTit.slice(0,13) + '..."')
-    showDltMsg('Successfully deleted "' + showTit.slice(0,13) + '..."');
-
-    localStorage.removeItem(thumbnail)
-    localStorage.removeItem(duration)
-    localStorage.removeItem(title)
-    localStorage.removeItem(name)
-    localStorage.removeItem(views)
-    localStorage.removeItem(period)
-    localStorage.removeItem(icon)
-    localStorage.removeItem(link)
-    dltHide();
-    pageReload();
-
-};
 function videoToDOM(i){
 
     var thumbnail = 'thumbnail' +i;
@@ -389,7 +356,38 @@ function videoToDOM(i){
     div.innerHTML ='<div class="thumbnail"><a href="'+link+'"><img src="' + thumbnail + '"></a><div class="duration"><span>' + duration + '</span></div></div><div class="titles"><div class="title"><p onclick="deleteVideo(' + i + ')">' + title + '</p></div><span style="display: block;">' + name + '</span><span>' + views + ' views' + " . " +  period +' ago'  + '</span></div><div class="icon"><img src="' + icon + '"></div><div class="dots" onclick="dltConfirm(' + i + ')"><i class="fas fa-trash"></i></div></div>'  
     }
 };
+function deleteVideo(i){
 
+    var thumbnail = 'thumbnail' +i;
+    var duration = 'duration' +i;
+    var title = 'title' +i;
+    var name = 'name' +i;
+    var views = 'views' +i;
+    var period = 'period' +i;
+    var icon = 'icon' +i;
+    var link = 'link' +i;
+    localStorage.setItem('def' , 'false');
+    // localStorage.setItem('localLength' ,(+localStorage.getItem('localLength')-1));
+    
+
+    var showTit = localStorage.getItem(title);
+    console.log('Successfully deleted "' + showTit.slice(0,13) + '..."')
+    showDltMsg('Successfully deleted "' + showTit.slice(0,13) + '..."');
+
+    localStorage.removeItem(thumbnail)
+    localStorage.removeItem(duration)
+    localStorage.removeItem(title)
+    localStorage.removeItem(name)
+    localStorage.removeItem(views)
+    localStorage.removeItem(period)
+    localStorage.removeItem(icon)
+    localStorage.removeItem(link)
+    dltHide();
+    pageReload();
+
+};
+
+// For User Videos
 var divIsCreated = false
 function userSaveVideo(userLength){
        
@@ -409,6 +407,12 @@ function userSaveVideo(userLength){
             for(var i=1; i<=localUserLength;  i++){
                 videoToDOMUser(i);
             }
+}
+if(localStorage.getItem('localUserLength') != undefined){
+    var localUserLength = +(localStorage.getItem('localUserLength'));
+    for(var i=1; i<=localUserLength;  i++){
+        videoToDOMUser(i);
+    };
 }
 function videoToDOMUser(i){
 
@@ -499,12 +503,6 @@ function deleteUserVideo(i){
 
 };
 
-if(localStorage.getItem('localUserLength') != undefined){
-    var localUserLength = +(localStorage.getItem('localUserLength'));
-    for(var i=1; i<=localUserLength;  i++){
-        videoToDOMUser(i);
-    };
-}
 
 function showDltMsg(message){
     msgDiv =  document.querySelector('.dltMsg');
@@ -528,3 +526,16 @@ function pageReload(){
         window.location.reload();
     }, 1000);
 }
+// Hide input on focus 
+
+var x = window.matchMedia("(max-width: 500px)")
+function focusShNHide(){
+        if (x.matches) { // If media query matches
+          document.querySelector('.header').style.display = 'none';
+          document.querySelector('.bodySidebar').style.display = 'none';
+        };
+};
+function focusOutShNHide(){
+    document.querySelector('.header').style.display = 'block';
+    document.querySelector('.bodySidebar').style.display = 'block';
+};
