@@ -512,7 +512,7 @@ h2{
 .videoBox {
     width: 265px;
     height: 265px;
-    margin: 5px;
+    margin: 8px;
     overflow: hidden;
     position: relative;
     cursor: pointer;
@@ -601,9 +601,8 @@ h2{
 .videoBox:hover .dots{
     display: block;
 }
-.userInput h1{
-    font-size: 1.5em;
-    margin: 10px 0;
+.UserInputDiv{
+    margin-left: 80px;
 }
 .userInput {
     text-align: center;
@@ -617,6 +616,10 @@ h2{
     margin: 15px auto;
     /* box-shadow: 0 0 5px black; */
     padding: 10px 3px   ;
+}
+.userInput h1{
+    font-size: 1.5em;
+    margin: 10px 0;
 }
 .userInput .createButton{
     width: 80%;
@@ -845,6 +848,9 @@ h2{
 }
 .dots{
     display: block;
+}
+.UserInputDiv{
+    margin-left:0px;
 }
 .footer {
     font-size: 25px;
