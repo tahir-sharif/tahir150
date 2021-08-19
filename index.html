@@ -13,12 +13,12 @@
 <div class="dltMsg" style="display: none;">Successfully deleted Hye kahan ka ir..</div>
 <div class="dltAlert" style="display: none;">
     <div class="dltTxt">
-        <p>Do you Want to Delete? </p>
+        <p></p>
         <p></p>
     </div>
     <div class="dltBtns">
         <button>Yes</button>
-        <button onclick="dltHide()">No</button>
+        <button onclick="hideAlerts()">No</button>
     </div>
 </div>
 
@@ -54,7 +54,7 @@
         </div>
     </div>
 
-    <div class="overlay" onclick="sideBarToggler()"></div>
+    <div class="overlay" onclick="hideAlerts()"></div>
 <div class="sidebarContainer sideToggle">
     
     <div class="sideBar">
@@ -231,7 +231,7 @@
             </div>
             <div class="icons right" style="display: inline-block;">
                 <ul>
-                    <li><a onclick="restore()" class="rst"><i class="fas fa-broom"></i></a></li>
+                    <li><a onclick="restoreConfirm()" class="rst"><i class="fas fa-broom"></i></a></li>
                     <li class="mblSrchIco"><a onclick="mblSrch()"><i class="far fa-search"></i></a></li>
                     <li class="bars"><a><i class="fas fa-bars"></i></a></li>
                     <li><a><i class="fas fa-bell"><span>9+</span></i></a></li>

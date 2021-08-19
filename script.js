@@ -1,3 +1,5 @@
+//               {-------------------Here--JavaScript--Starts-------------------}
+
 // Scroll Bar
 var scrollBar = document.querySelector('.scrollbar');
 scrollBar.addEventListener('mousemove' , ()=>{
@@ -49,6 +51,7 @@ userSearchMbl.addEventListener('keyup' ,(enter) => {
         mblSrchBtn.click()
     }
 });
+
 // Generate Link for Youtube
 function linkGenerator(userSearch){
 
@@ -106,6 +109,8 @@ function suggestionScroll(value){
     suggestionList.scroll(value , 0)
 }
 
+
+// User Form V?alidation and Save Into Variables
 var createButton = document.querySelector('.createButton');
 var CreateNow = document.querySelector('.CreateNow');
 var channelInfo = document.querySelector('.channelInfo');
@@ -145,7 +150,7 @@ function formChanger2(){
         showMsg('incomplete Information !')
     };
 
-}
+};
 
 function formChanger3(){
     
@@ -187,8 +192,8 @@ function formChanger3(){
     }else{
         showMsg('incomplete Information !')
     };
-}
-// contruct object from user input
+};
+// construct an object from user input
 function newVideo(thumbnail , duration ,title , name , views , period , icon , link){
     this.thumbnail = thumbnail;
     this.duration = duration;
@@ -198,13 +203,13 @@ function newVideo(thumbnail , duration ,title , name , views , period , icon , l
     this.period = period;
     this.icon = icon;
     this.link = link;
-}
+};
 
 
-// Default Video , Array of Objects
+// Default Videos , Array of Objects
 var videoArr = [
     {
-        thumbnail : 'thumbnail1.jpg' ,
+        thumbnail : './thumbnail1.jpg' ,
         duration : '16:09' ,
         title : 'Hye Kahan Ka Irada Tumhara Sanam NFAK',
         name : 'NUSRAT FATEH ALI KHAN',
@@ -225,13 +230,13 @@ var videoArr = [
     },
     {
         thumbnail : './thumbnail3.jpg' ,
-        duration : '22:14' ,
-        title : 'Latest English songs with lyrics 2018 | top songs' ,
-        name : 'VIRU NAIK' ,
-        views : '109M' ,
+        duration : '10:24' ,
+        title : 'Coke Studio Season 8 - Tajdar-e-Haram - Atif Aslam' ,
+        name : 'PopBox' ,
+        views : '152M' ,
         period : '3 years' ,
-        icon : 'https://yt3.ggpht.com/ytc/AKedOLSKJJ-ey7XfF_IB3kCr2UYBdmgyxMD4Z3toVYu5=s48-c-k-c0x00ffffff-no-rj' ,
-        link : 'https://www.youtube.com/watch?v=GjqosLwfT8E'
+        icon : 'https://yt3.ggpht.com/ytc/AKedOLSHsS3Grb_YWFDkHRuSOBMvUV4f3UvxbtOc6xdx=s48-c-k-c0x00ffffff-no-rj' ,
+        link : 'https://www.youtube.com/watch?v=cajSxnjQC00'
     },
     {
         thumbnail : './thumbnail4.jpg' ,
@@ -273,7 +278,7 @@ var videoArr = [
         icon : 'https://yt3.ggpht.com/ytc/AKedOLTutnwaD90kDcNZFwn2U3iw5FRNjp4LTTCZbqaU8g=s48-c-k-c0x00ffffff-no-rj' ,
         link : 'https://www.youtube.com/watch?v=SIqnvMt8IMU'
     }
-]
+];
  
 console.log(videoArr);
 if(localStorage.getItem('localLength') == undefined){
@@ -283,12 +288,12 @@ if(localStorage.getItem('localLength') == undefined){
 // For Default Videos
 function saveVideo(){
 
-if(localStorage.getItem('localLength') == undefined || + +(localStorage.getItem('localLength'))<    1){
+if(localStorage.getItem('localLength') == undefined || + +(localStorage.getItem('localLength'))<1){
 
     console.log(localStorage.getItem('localLength'))
     localStorage.setItem('localLength' , videoArr.length);
 
-}
+};
 currentLength = localStorage.getItem('localLength');
         // video = new newVideo('./thumbnail1.jpg' , '16:09' , 'Hye Kahan Ka Irada Tumhara Sanam NFAK' , 'NUSRAT FATEH ALI KHAN' , '348k' , '1 month' , 'https://yt3.ggpht.com/ytc/AKedOLS_JQEtkr812ZL0k4dQ00eJ603fTcouKDgU_s9-mQ=s48-c-k-c0x00ffffff-no-rj' , 'https://www.youtube.com/watch?v=1Bybyk3QXcA')
         // localLength = localStorage.getItem('localLength')
@@ -300,7 +305,7 @@ var lastdur;
 if(localStorage.getItem('def') == undefined){
     localStorage.setItem('def' , 'true')
 };
-for(i=0; i<=currentLength ; i++){
+for(i=0; i<currentLength; i++){
 
     lastdur =  'duration' + i;
     if(localStorage.getItem(lastdur) == undefined && localStorage.getItem('def') == 'true'){
@@ -316,15 +321,21 @@ for(i=0; i<=currentLength ; i++){
         localStorage.setItem('localLength' , i);
 
         console.log('Setting Video' + videoArr[i].title + ' in localStorage');
+        showDltMsg('Default Videos added.');
+
 
     }
 
+};
+for(i=0; i<=currentLength; i++){
     videoToDOM(i);
-}
+};
 console.log(localStorage)
 console.log('Successfully Completed the Operation !')
-}
+};
 saveVideo();
+
+// Default Videos to page
 function videoToDOM(i){
 
     var thumbnail = 'thumbnail' +i;
@@ -356,6 +367,25 @@ function videoToDOM(i){
     div.innerHTML ='<div class="thumbnail"><a href="'+link+'"><img src="' + thumbnail + '"></a><div class="duration"><span>' + duration + '</span></div></div><div class="titles"><div class="title"><p onclick="deleteVideo(' + i + ')">' + title + '</p></div><span style="display: block;">' + name + '</span><span>' + views + ' views' + " . " +  period +' ago'  + '</span></div><div class="icon"><img src="' + icon + '"></div><div class="dots" onclick="dltConfirm(' + i + ')"><i class="fas fa-trash"></i></div></div>'  
     }
 };
+
+var dltAlert = document.querySelector('.dltAlert');
+var dltTxtHead = document.querySelectorAll('.dltTxt p')[0];
+var dltTxt = document.querySelectorAll('.dltTxt p')[1];
+
+// Confrims for User created Div
+function dltConfirm(i){
+    var title = 'title' +i;
+    var showTit = localStorage.getItem(title);
+    dltTxtHead.innerText = 'Do you Want to Delete ?'
+    dltTxt.innerText = showTit;
+    dltAlert.style.display = 'block';
+    var dltButton = document.querySelectorAll('.dltBtns button')[0];
+    dltButton.innerHTML = '<span onclick="deleteVideo(' + i +')">Yes</span>'
+    overlay.classList.add('showOverlay');
+
+};
+
+// Delete default Video if deleteConfirm pass
 function deleteVideo(i){
 
     var thumbnail = 'thumbnail' +i;
@@ -382,7 +412,7 @@ function deleteVideo(i){
     localStorage.removeItem(period)
     localStorage.removeItem(icon)
     localStorage.removeItem(link)
-    dltHide();
+    hideAlerts();
     pageReload();
 
 };
@@ -399,6 +429,7 @@ function userSaveVideo(userLength){
             localStorage.setItem('UserPeriod'+userLength, videoArr[7].period);
             localStorage.setItem('UserIcon'+userLength, videoArr[7].icon);
             localStorage.setItem('UserLink'+userLength, videoArr[7].link);
+
             localStorage.setItem('localUserLength' , +(localStorage.getItem('localUserLength'))+1 );
     
             console.log('Setting Video' + videoArr[7].UserTitle + ' in localStorage');
@@ -407,13 +438,16 @@ function userSaveVideo(userLength){
             for(var i=1; i<=localUserLength;  i++){
                 videoToDOMUser(i);
             }
-}
+};
+
 if(localStorage.getItem('localUserLength') != undefined){
     var localUserLength = +(localStorage.getItem('localUserLength'));
     for(var i=1; i<=localUserLength;  i++){
         videoToDOMUser(i);
     };
-}
+};
+
+// Show Video to Page if User have created any Div
 function videoToDOMUser(i){
 
     var thumbnail = 'UserThumbnail' +i;
@@ -449,28 +483,21 @@ function videoToDOMUser(i){
         window.location.reload();
     };
 };
-var dltAlert = document.querySelector('.dltAlert');
-var dltTxt = document.querySelectorAll('.dltTxt p')[1];
-function dltConfirm(i){
-    var title = 'title' +i;
-    var showTit = localStorage.getItem(title);
-    dltTxt.innerText = showTit;
-    dltAlert.style.display = 'block';
-    var dltButton = document.querySelectorAll('.dltBtns button')[0];
-    dltButton.innerHTML = '<span onclick="deleteVideo(' + i +')">Yes</span>'
-}
+
+
+// Confrims for User created Div
 function dltUserConfirm(i){
     var title = 'UserTitle' +i;
     var showTit = localStorage.getItem(title);
+    dltTxtHead.innerText = 'Do you Want to Delete ?'
     dltTxt.innerText = showTit;
     dltAlert.style.display = 'block';
     var dltButton = document.querySelectorAll('.dltBtns button')[0];
     dltButton.innerHTML = '<span onclick="deleteUserVideo(' + i +')">Yes</span>'
-}
-function dltHide(){
-    dltAlert.style.display = 'none';
+    overlay.classList.add('showOverlay');
+};
 
-}
+// Delete User Created Video if deleteConfirm pass
 function deleteUserVideo(i){
 
     console.log(i)
@@ -498,12 +525,12 @@ function deleteUserVideo(i){
     localStorage.removeItem(period)
     localStorage.removeItem(icon)
     localStorage.removeItem(link)
-    dltHide()
+    hideAlerts()
     pageReload();
 
 };
 
-
+// Show PopUp on Screen
 function showDltMsg(message){
     msgDiv =  document.querySelector('.dltMsg');
     msgDiv.style.display = 'block'
@@ -511,31 +538,66 @@ function showDltMsg(message){
     setTimeout(() => {
     msgDiv.style.display = 'none'
     }, 2500);
-}
+};
 
+// confirmation for delete
+function restoreConfirm(){
+    dltTxtHead.innerText = 'Restore to Default'
+    dltTxt.innerText = 'Your Saved Videos Will be Deleted and Old Videos will be restored.';
+    dltAlert.style.display = 'block';
+    overlay.classList.add('showOverlay')
+    var dltButton = document.querySelectorAll('.dltBtns button')[0];
+    dltButton.innerHTML = '<span onclick="restore(); hideAlerts();">Yes</span>'
+};
+
+// if confirm func pass this function runs to delete
 function restore(){
     showDltMsg('Restoring Settings to Default..');
     setTimeout(() => {
         localStorage.clear();
         pageReload();
     }, 1500);
-}
+};
 
+// Hide PopUps
+function hideAlerts(){
+    dltAlert.style.display = 'none';
+    sidebarContainer.classList.add('sideToggle');
+    overlay.classList.remove('showOverlay');
+};
+
+// Page Reload Function
 function pageReload(){
     setTimeout(() => {
         window.location.reload();
     }, 1000);
-}
-// Hide input on focus 
+};
 
-var x = window.matchMedia("(max-width: 500px)")
-function focusShNHide(){
-        if (x.matches) { // If media query matches
-          document.querySelector('.header').style.display = 'none';
-          document.querySelector('.bodySidebar').style.display = 'none';
+// Use this functions if media query Matches
+    var x = window.matchMedia("(max-width: 500px)")
+    // Bottom and sidebar hides & shows on User (for Form foucus)
+    function focusShNHide(){
+        if (x.matches) {
+            document.querySelector('.header').style.display = 'none';
+            document.querySelector('.bodySidebar').style.display = 'none';
         };
-};
-function focusOutShNHide(){
-    document.querySelector('.header').style.display = 'block';
-    document.querySelector('.bodySidebar').style.display = 'block';
-};
+    };
+    function focusOutShNHide(){
+        document.querySelector('.header').style.display = 'block';
+        document.querySelector('.bodySidebar').style.display = 'block';
+    };
+
+    // Bottom hide & show on focus
+    userSearchMbl.addEventListener('focus' ,() => {
+        if (x.matches) {
+            document.querySelector('.bodySidebar').style.display = 'none';
+        };
+    });
+    userSearchMbl.addEventListener('focusout' ,() => {
+        if (x.matches) {
+            document.querySelector('.bodySidebar').style.display = 'block';
+        };
+    });
+// Here Media Query Ends
+
+//              {-------------------Here--JavaScript--Ends-------------------}

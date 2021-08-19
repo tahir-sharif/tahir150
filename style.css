@@ -64,13 +64,13 @@ body {
 .bodySidebar .main ul li:nth-child(3){
     display: none;
 }
-.overlay{
-    position: absolute;
+.overlay {
+    position: fixed;
     top: 0;
     bottom: 0;
     width: 100%;
     background: rgba(0, 0, 0, 0.514);
-    z-index: 4;
+    z-index: 5;
     transition: .8s;
     opacity: 0;
     display: none;
