@@ -543,7 +543,7 @@ function showDltMsg(message){
 // confirmation for delete
 function restoreConfirm(){
     dltTxtHead.innerText = 'Restore to Default'
-    dltTxt.innerText = 'Your Saved Videos Will be Deleted and Old Videos will be restored.';
+    dltTxt.innerText = 'Your Saved Videos Will be Deleted and Default Videos will be restored.';
     dltAlert.style.display = 'block';
     overlay.classList.add('showOverlay')
     var dltButton = document.querySelectorAll('.dltBtns button')[0];
