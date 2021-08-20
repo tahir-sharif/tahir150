@@ -1,5 +1,18 @@
 //               {-------------------Here--JavaScript--Starts-------------------}
 
+// Show Logo On Start
+setTimeout(() => {
+    document.querySelector('.startLogo img').style.display = 'none'
+    document.querySelector('.startLogo .loader').style.display = 'block'
+}, 1000);
+window.addEventListener('load' , () => {
+    setTimeout(() => {
+        console.log('Page is Loaded')
+        document.querySelector('.startLogo').style.display = 'none'
+        document.querySelector('.yt').style.display = 'block'
+    },1000 );
+});
+
 // Scroll Bar
 var scrollBar = document.querySelector('.scrollbar');
 scrollBar.addEventListener('mousemove' , ()=>{
