@@ -564,6 +564,7 @@ function hideAlerts(){
     dltAlert.style.display = 'none';
     sidebarContainer.classList.add('sideToggle');
     overlay.classList.remove('showOverlay');
+    document.body.classList.toggle('hideScroll')
 };
 
 // Page Reload Function
@@ -601,3 +602,4 @@ function pageReload(){
 // Here Media Query Ends
 
 //              {-------------------Here--JavaScript--Ends-------------------}
+
